@@ -1,4 +1,4 @@
-extern void hi();
-main() {
+extern void hi() ;
+void main() {
   hi();
 }
