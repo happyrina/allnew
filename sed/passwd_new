@@ -1,0 +1,43 @@
+root=x=0=0=root=/root=/bin/bash
+bin=x=1=1=bin=/bin=/sbin/nologin
+daemon=x=2=2=daemon=/sbin=/sbin/nologin
+adm=x=3=4=adm=/var/adm=/sbin/nologin
+lp=x=4=7=lp=/var/spool/lpd=/sbin/nologin
+sync=x=5=0=sync=/sbin=/bin/sync
+shutdown=x=6=0=shutdown=/sbin=/sbin/shutdown
+halt=x=7=0=halt=/sbin=/sbin/halt
+mail=x=8=12=mail=/var/spool/mail=/sbin/nologin
+operator=x=11=0=operator=/root=/sbin/nologin
+games=x=12=100=games=/usr/games=/sbin/nologin
+ftp=x=14=50=FTP User=/var/ftp=/sbin/nologin
+nobody=x=65534=65534=Kernel Overflow User=/=/sbin/nologin
+systemd-coredump=x=999=997=systemd Core Dumper=/=/sbin/nologin
+dbus=x=81=81=System message bus=/=/sbin/nologin
+polkitd=x=998=996=User for polkitd=/=/sbin/nologin
+avahi=x=70=70=Avahi mDNS/DNS-SD Stack=/var/run/avahi-daemon=/sbin/nologin
+rtkit=x=172=172=RealtimeKit=/proc=/sbin/nologin
+libstoragemgmt=x=992=992=daemon account for libstoragemgmt=/=/usr/sbin/nologin
+systemd-oom=x=991=991=systemd Userspace OOM Killer=/=/usr/sbin/nologin
+geoclue=x=990=990=User for geoclue=/var/lib/geoclue=/sbin/nologin
+tss=x=59=59=Account used for TPM access=/dev/null=/sbin/nologin
+cockpit-ws=x=989=989=User for cockpit web service=/nonexisting=/sbin/nologin
+cockpit-wsinstance=x=988=988=User for cockpit-ws instances=/nonexisting=/sbin/nologin
+colord=x=987=987=User for colord=/var/lib/colord=/sbin/nologin
+sssd=x=986=986=User for sssd=/=/sbin/nologin
+setroubleshoot=x=985=985=SELinux troubleshoot server=/var/lib/setroubleshoot=/sbin/nologin
+pipewire=x=984=984=PipeWire System Daemon=/var/run/pipewire=/sbin/nologin
+flatpak=x=983=983=User for flatpak system helper=/=/sbin/nologin
+clevis=x=982=982=Clevis Decryption Framework unprivileged user=/var/cache/clevis=/usr/sbin/nologin
+gdm=x=42=42==/var/lib/gdm=/sbin/nologin
+gnome-initial-setup=x=981=980==/run/gnome-initial-setup/=/sbin/nologin
+sshd=x=74=74=Privilege-separated SSH=/usr/share/empty.sshd=/sbin/nologin
+chrony=x=980=979=chrony system user=/var/lib/chrony=/sbin/nologin
+dnsmasq=x=979=978=Dnsmasq DHCP and DNS server=/var/lib/dnsmasq=/sbin/nologin
+tcpdump=x=72=72==/=/sbin/nologin
+centos=x=1000=1000=centos=/home/centos=/bin/bash
+pesign=x=978=977=Group for the pesign signing daemon=/run/pesign=/sbin/nologin
+user1=x=1001=100==/home/user1=/bin/bash
+user2=x=1002=100==/home/user2=/bin/bash
+user3=x=1003=100==/home/user3=/bin/bash
+testuser1=x=3000=100==/home/testuser1=/bin/bash
+test1=x=300=100==/home/test1=/bin/bash
