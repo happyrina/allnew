@@ -12,11 +12,11 @@ var data = JSON.stringify({
 
 var config = {
     method: 'post',
-    url: 'https://us-west-2.aws.data.mongodb-api.com/app/data-eqglt/endpoint/data/v1',
+    url: 'https://us-west-2.aws.data.mongodb-api.com/app/data-eqglt/endpoint/data/v1/action/findOne',
     headers: {
         'Content-Type': 'application/json',
         'Access-Control-Request-Headers': '*',
-        'api-key': 'KZN0aruxaUmiKZJkkuBfMPIGCjswl9q9ZTtt9SD5STGvHmzYRjEKKTh7s3CovlkE',
+        'api-key': 'qPQfRNNJrPJhPotqNVjnMk1V5bocqSdObEA1iZBj597yqvY9VOwj8KWtm5bp1vHC',
     },
     data: data
 };
