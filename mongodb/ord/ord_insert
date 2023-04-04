@@ -1,6 +1,6 @@
 use test
 db.ord.drop()
-db.ord.insert(({
+db.ord.insert({
         ordid : "2023-03-03",
         customer_name : "wonam",
         emp_nam : "magee",

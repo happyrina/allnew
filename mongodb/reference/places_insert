@@ -9,6 +9,6 @@ db.places.insert({
 
 db.people.insert({
     name : "Erin",
-    places_id : db.places.findOne({name : "Broadway Center})._id,
+    places_id : db.places.findOne({name : "Broadway Center"})._id,
     url : "bc.example.net/Erin"
 })
