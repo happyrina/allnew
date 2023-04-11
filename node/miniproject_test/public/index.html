@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>경기일정</title>
+</head>
+
+<body>
+    <h3>User Authentication</h3>
+    <hr />
+    <form action="/insert" target="targetURL" name="userForm" method="post">
+        <p>Home : <input type="text" size="15" name="home" /></p>
+        <p>Away : <input type="text" size="15" name="away" /></p>
+        <p>Schedule_date : <input type="text" size="15" name="schedule_date" /></p>
+        <p>Schedule_time : <input type="text" size="15" name="schedule_time" /></p>
+        <input type="button" value="get select" onclick='document.targetURL.location.href="/aa"' />&nbsp;&nbsp;
+        <input type="button" value="get selectQuery"
+            onclick='document.targetURL.location.href="/selectQuery?home=" + document.userForm.home.value' />&nbsp;&nbsp;
+        <input type="submit" value="post insert" onclick='document.targetURL.location.href="/insert"' />&nbsp;&nbsp;
+        <button type="submit" formaction="/update">post update</button>&nbsp;&nbsp;
+        <button type="submit" formaction="/delete">post delete</button>&nbsp;&nbsp;
+
+    </form>
+    <hr />
+    <iframe name="targetURL" width="70%" height="500" style="border: none" src="/aa"></iframe>
+</body>
+
+</html>
