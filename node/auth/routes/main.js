@@ -85,7 +85,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('sync-mysql');
-const CircularJSON = require('circular-json')
 const env = require('dotenv').config({ path: "../../.env" });
 
 var connection = new mysql({
@@ -185,6 +184,8 @@ app.post('/delete', (req, res) => {
     console.log(result);
     res.redirect('/select');
 })
+
+
 
 module.exports = app;
 
