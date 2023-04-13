@@ -102,7 +102,44 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/hello', (req, res) => {
-    res.send('Hello World~!!')
+    res.send('Welcome back~!!')
+})
+
+app.get('/select', (req, res) => {
+    const result = connection.query('select * from user');
+    console.log(result);
+    // res.send(result);
+    res.writeHead(200);
+    var templete = `
+       <!doctype html>
+       <html>
+       <head>
+           <title>Result</title>
+           <meta charset="utf-8">
+           <link rel="stylesheet" href="select.css">
+       </head>
+       <body>
+       <table border="1" style="margin:auto; text-align:center;">
+       <thead>
+           <tr><th>User ID</th><th>Password</th></tr>
+       </thead>
+       <tbody>
+       `;
+    for (var i = 0; i < result.length; i++) {
+        templete += `
+       <tr>
+           <td>${result[i]['userid']}</td>
+           <td>${result[i]['passwd']}</td>
+       </tr>
+       `;
+    }
+    templete += `
+       </tbody>
+       </table>
+       </body>
+       </html>
+   `;
+    res.end(templete);
 })
 
 // login
@@ -145,12 +182,56 @@ app.post('/select', (req, res) => {
 })
 
 // request O, query O
+// app.get('/selectQuery', (req, res) => {
+//     const id = req.query.id;
+//     const result = connection.query("select * from user where userid=?", [id]);
+//     console.log(result);
+//     res.send(result);
+// })
 app.get('/selectQuery', (req, res) => {
     const id = req.query.id;
-    const result = connection.query("select * from user where userid=?", [id]);
+    const result = connection.query('SELECT * FROM user where userid=?', [id]);
     console.log(result);
-    res.send(result);
-})
+    //res.send(result);
+    if (result.length == 0) {
+        res.send("<p style='background-color: white; background-opacity: 70%; color: red; font-size: 30px; font-weight: 20px; text-align: center;'>데이터가 없습니다.</p>");
+
+
+    } else {
+
+        res.writeHead(200);
+        var templete = `
+        <!doctype html>
+        <html>
+        <
+            <title>Reult</title>
+            <meta charset="utf-8">
+            <link rel="stylesheet" href="selectQuery.css">
+       </head>
+       <body>
+       <table border="1" style="margin:auto; text-align:center;">
+       <thead>
+           <tr><th>User ID</th><th>Password</th></tr>
+       </thead>
+       <tbody>
+       `;
+        for (var i = 0; i < result.length; i++) {
+            templete += `
+       <tr>
+           <td>${result[i]['userid']}</td>
+           <td>${result[i]['passwd']}</td>
+       </tr>
+       `;
+        }
+        templete += `
+       </tbody>
+       </table>
+       </body>
+       </html>
+   `;
+        res.end(templete);
+    }
+});
 
 // request O, query O
 app.post('/selectQuery', (req, res) => {
@@ -162,12 +243,29 @@ app.post('/selectQuery', (req, res) => {
 })
 
 // request O, query O
+// app.post('/insert', (req, res) => {
+//     const { id, pw } = req.body;
+//     const result = connection.query("insert into user values (?, ?)", [id, pw]);
+//     console.log(result);
+//     if (result.length == 0) {
+//         res.send("데이터를 넣어주세요!");
+
+
+//     } else {
+//         res.redirect('/selectQuery?id=' + req.body.id);
+//     }
+// })
+
 app.post('/insert', (req, res) => {
     const { id, pw } = req.body;
-    const result = connection.query("insert into user values (?, ?)", [id, pw]);
-    console.log(result);
-    res.redirect('/selectQuery?id=' + req.body.id);
-})
+    if (id == 0 || pw == 0) { //!pw pw가 있으면, 
+        res.send("id와 pw를 넣어주세요!");
+    } else {
+        const result = connection.query("insert into user values (?, ?)", [id, pw]);
+        console.log(result);
+        res.redirect('/selectQuery?id=' + req.body.id);
+    }
+});
 
 // request O, query O
 app.post('/update', (req, res) => {
@@ -182,7 +280,14 @@ app.post('/delete', (req, res) => {
     const id = req.body.id;
     const result = connection.query("delete from user where userid=?", [id]);
     console.log(result);
-    res.redirect('/select');
+    
+    if (id == 0 || pw == 0) { //!pw pw가 있으면, 
+        res.send("제발 데이터를 넣어주세요!!!!!!!!!!");
+    } else {
+        const result = connection.query("insert into user values (?, ?)", [id, pw]);
+        console.log(result);
+        res.redirect('/select');
+    }
 })
 
 
