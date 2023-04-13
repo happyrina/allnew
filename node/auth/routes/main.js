@@ -417,6 +417,8 @@ app.post('/update', (req, res) => {
     }
 })
 
+
+
 // request O, query O
 app.post('/delete', (req, res) => {
     const id = req.body.id;
@@ -440,3 +442,4 @@ app.post('/delete', (req, res) => {
 
 module.exports = app;
 
+//첫번째는 공백, 반대로 생각하기
