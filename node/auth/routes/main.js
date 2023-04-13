@@ -105,6 +105,59 @@ app.get('/hello', (req, res) => {
     res.send('Welcome back~!!')
 })
 
+function templete_nodata(res) {
+    res.writeHead(200);
+    var templete = `
+        <!doctype html>
+        <html>
+        <head>
+            <title>Result</title>
+            <meta charset="utf-8">
+            <link type="text/css" rel="stylesheet" href=mystyle.css" />
+        </head>
+        <body>
+            <h3>데이터가 존재하지 않습니다</h3>
+        </body>
+        </html>
+    `;
+    res.end(templete);
+}
+
+function templete_result(result, res) {
+    res.writeHead(200);
+    var templete = `
+        <!doctype html>
+        <html>
+        <head>
+            <title>Result</title>
+            <meta charset="utf-8">
+            <link type="text/css" rel="stylesheet" href="mystyle.css"/>
+        </head>
+        <body>
+        <table border="1" style="margin;auto;">
+        <thead>
+            <tr><th>User ID</th></tr>
+         </thead>
+    <tbody>
+    `;
+    for (var i = 0; i < result.length; i++) {
+        templete += `
+    <tr>
+        <td>${result[i]['userid']}</td>
+        <td>${result[i]['passwd']}</td>
+    </tr>
+    `;
+    }
+    templete += `
+    </tbody>
+    </table>
+    </body>
+    </html>
+    `;
+    res.end(templete);
+}
+
+
 app.get('/select', (req, res) => {
     const result = connection.query('select * from user');
     console.log(result);
@@ -162,23 +215,58 @@ app.post('/login', (req, res) => {
 // register
 app.post('/register', (req, res) => {
     const { id, pw } = req.body;
-    const result = connection.query("insert into user values (?, ?)", [id, pw]);
-    console.log(result);
-    res.redirect('/');
+    if (id == "") {
+        res.redirect('register.heml')
+    } else {
+        let result = connection.query("select * from user where userid=?", [id]);
+        if (result.length > 0) {
+            res.writeHead(200);
+            var templete = `
+                <!doctype html>
+                <html>
+                <head>
+                    <title>Error</title>
+                    <meta charset="utf-8"
+                </head>
+                <body>
+                    <div>
+                        <h3 style="margin-left: 30px">Register Failed</h3>
+                        <h4 style="margin-left: 30px">이미 존재하는 아이디입니다.</h4>
+                    </div>
+                </body>
+                </html>
+            `;
+            res.end(templete);
+        } else {
+            result = connection.query("insert into user values (?, ?)", [id, pw]);
+            console.log(result);
+            res.redirect('/');
+        }
+    }
 })
 
 // request O, query X
 app.get('/select', (req, res) => {
     const result = connection.query('select * from user');
     console.log(result);
-    res.send(result);
+    // res.send(result);
+    if (result.length == 0) {
+        templete_nodata(res)
+    } else {
+        templete_result(result, res);
+    }
 })
 
 // request O, query X
 app.post('/select', (req, res) => {
     const result = connection.query('select * from user');
     console.log(result);
-    res.send(result);
+    // res.send(result);
+    if (result.length == 0) {
+        templete_nodata(res)
+    } else {
+        templete_result(result, res);
+    }
 })
 
 // request O, query O
@@ -190,6 +278,17 @@ app.post('/select', (req, res) => {
 // })
 app.get('/selectQuery', (req, res) => {
     const id = req.query.id;
+    if (id == "") {
+        res.send('User-id를 입력하세요.')
+    } else {
+        const result = connection.query("select * from user where userid=?", [id]);
+        console.log(result);
+        if (result.length == 0) {
+            templete_nodata(res)
+        } else {
+            templete_res
+        }
+    }
     const result = connection.query('SELECT * FROM user where userid=?', [id]);
     console.log(result);
     //res.send(result);
@@ -256,37 +355,84 @@ app.post('/selectQuery', (req, res) => {
 //     }
 // })
 
+// app.post('/insert', (req, res) => {
+//     const { id, pw } = req.body;
+//     if (id == 0 || pw == 0) { //!pw pw가 있으면, 
+//         res.send("<p style='background-color: white; color: red; font-size:20px; text-align: center;';>🤬id와 pw를 넣어주세요!!!!!!🤬</p>");
+//     } else {
+//         const result = connection.query("insert into user values (?, ?)", [id, pw]);
+//         console.log(result);
+//         res.redirect('/selectQuery?id=' + req.body.id);
+//     }
+// });
+
 app.post('/insert', (req, res) => {
     const { id, pw } = req.body;
-    if (id == 0 || pw == 0) { //!pw pw가 있으면, 
-        res.send("<p style='background-color: white; color: red; font-size:20px; text-align: center;';>🤬id와 pw를 넣어주세요!!!!!!🤬</p>");
+    if (id == "" || pw == "") {
+        res.send('User-id와 Password를 입력하세요.')
     } else {
-        const result = connection.query("insert into user values (?, ?)", [id, pw]);
-        console.log(result);
-        res.redirect('/selectQuery?id=' + req.body.id);
+        let result = connection.query("select * from user where userid=?", [id]);
+        if (result.length > 0) {
+            res.writeHead(200);
+            var templete = `
+        <!doctype html>
+        <html>
+        <head>
+            <title>Error</title>
+            <meta charset="utf-8">
+        </head>
+        <body>
+            <div>
+                <h3 style="margin-left: 30px">Registrer Failed</h3>
+                <h4 style="margin-left: 30px">이미 존재하는 아이디입니다.</h4>
+            </div>
+        </body>
+        </html>
+        `;
+            res.end(templete);
+        } else {
+            result = connection.query("insert into user values (?, ?)", [id, pw]);
+            console.log(result);
+            res.redirect('/selectQuery?id=' + req.body.id);
+        }
     }
-});
+})
 
 // request O, query O
 app.post('/update', (req, res) => {
     const { id, pw } = req.body;
-    const result = connection.query("update user set passwd=? where userid=?", [pw, id]);
-    console.log(result);
-    res.redirect('/selectQuery?id=' + req.body.id);
+    if (id == "" || pw == "") {
+        res.send('User-id와 Password를 입력하세요.')
+    } else {
+        const result = connection.query("select * from user where userid=?", [id]);
+        console.log(result);
+        // res.send(result);
+        if (result.length == 0) {
+            templete_nodata(res)
+        } else {
+            const result = connection.query("update user set passwd=? where userid=?", [pw, id]);
+            console.log(result);
+            res.redirect('/selectQuery?id=' + id);
+        }
+    }
 })
 
 // request O, query O
 app.post('/delete', (req, res) => {
     const id = req.body.id;
-    const result = connection.query("delete from user where userid=?", [id]);
-    console.log(result);
-
-    if (id == 0 || pw == 0) { //!pw pw가 있으면, 
-        res.send("제발 데이터를 넣어주세요!!!!!!!!!!");
+    if (id == "") {
+        res.send('User-id를 입력하세요.')
     } else {
-        const result = connection.query("insert into user values (?, ?)", [id, pw]);
+        const result = connection.query("select * from user where userid=?", [id]);
         console.log(result);
-        res.redirect('/select');
+        // res.send(result);
+        if (result.length == 0) {
+            templete_nodata(res)
+        } else {
+            const result = connection.query("delete from user where userid=?", [id]);
+            console.log(result);
+            res.redirect('/select');
+        }
     }
 })
 
