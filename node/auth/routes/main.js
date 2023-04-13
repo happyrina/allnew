@@ -259,7 +259,7 @@ app.post('/selectQuery', (req, res) => {
 app.post('/insert', (req, res) => {
     const { id, pw } = req.body;
     if (id == 0 || pw == 0) { //!pw pw가 있으면, 
-        res.send("id와 pw를 넣어주세요!");
+        res.send("<p style='background-color: white; color: red; font-size:20px; text-align: center;';>🤬id와 pw를 넣어주세요!!!!!!🤬</p>");
     } else {
         const result = connection.query("insert into user values (?, ?)", [id, pw]);
         console.log(result);
@@ -280,7 +280,7 @@ app.post('/delete', (req, res) => {
     const id = req.body.id;
     const result = connection.query("delete from user where userid=?", [id]);
     console.log(result);
-    
+
     if (id == 0 || pw == 0) { //!pw pw가 있으면, 
         res.send("제발 데이터를 넣어주세요!!!!!!!!!!");
     } else {
