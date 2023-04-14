@@ -279,58 +279,61 @@ app.post('/select', (req, res) => {
 app.get('/selectQuery', (req, res) => {
     const id = req.query.id;
     if (id == "") {
-        res.send('User-id를 입력하세요.')
+        res.write("<script>alert('User-id를 입력하세요.')</script>");
     } else {
         const result = connection.query("select * from user where userid=?", [id]);
         console.log(result);
+
         if (result.length == 0) {
             templete_nodata(res)
         } else {
-            templete_res
+            templete_result
         }
-    }
-    const result = connection.query('SELECT * FROM user where userid=?', [id]);
-    console.log(result);
-    //res.send(result);
-    if (result.length == 0) {
-        res.send("<p style='background-color: white; background-opacity: 70%; color: red; font-size: 30px; font-weight: 20px; text-align: center;'>데이터가 없습니다.</p>");
-
-
-    } else {
-
-        res.writeHead(200);
-        var templete = `
-        <!doctype html>
-        <html>
-        <
-            <title>Reult</title>
-            <meta charset="utf-8">
-            <link rel="stylesheet" href="selectQuery.css">
-       </head>
-       <body>
-       <table border="1" style="margin:auto; text-align:center;">
-       <thead>
-           <tr><th>User ID</th><th>Password</th></tr>
-       </thead>
-       <tbody>
-       `;
-        for (var i = 0; i < result.length; i++) {
-            templete += `
-       <tr>
-           <td>${result[i]['userid']}</td>
-           <td>${result[i]['passwd']}</td>
-       </tr>
-       `;
-        }
-        templete += `
-       </tbody>
-       </table>
-       </body>
-       </html>
-   `;
-        res.end(templete);
     }
 });
+// const result = connection.query('SELECT * FROM user where userid=?', [id]);
+// console.log(result);
+
+//res.send(result);
+//     if (result.length == 0) {
+//         res.send("<p style='background-color: white; background-opacity: 70%; color: red; font-size: 30px; font-weight: 20px; text-align: center;'>데이터가 없습니다.</p>");
+
+
+//     } else {
+
+//         res.writeHead(200);
+//         var templete = `
+//         <!doctype html>
+//         <html>
+//         <
+//             <title>Reult</title>
+//             <meta charset="utf-8">
+//             <link rel="stylesheet" href="selectQuery.css">
+//        </head>
+//        <body>
+//        <table border="1" style="margin:auto; text-align:center;">
+//        <thead>
+//            <tr><th>User ID</th><th>Password</th></tr>
+//        </thead>
+//        <tbody>
+//        `;
+//         for (var i = 0; i < result.length; i++) {
+//             templete += `
+//        <tr>
+//            <td>${result[i]['userid']}</td>
+//            <td>${result[i]['passwd']}</td>
+//        </tr>
+//        `;
+//         }
+//         templete += `
+//        </tbody>
+//        </table>
+//        </body>
+//        </html>
+//    `;
+//         res.end(templete);
+//     }
+
 
 // request O, query O
 app.post('/selectQuery', (req, res) => {
@@ -369,7 +372,7 @@ app.post('/selectQuery', (req, res) => {
 app.post('/insert', (req, res) => {
     const { id, pw } = req.body;
     if (id == "" || pw == "") {
-        res.send('User-id와 Password를 입력하세요.')
+        res.write("<script>alert('User-id와 password를 입력하세요.')</script>");
     } else {
         let result = connection.query("select * from user where userid=?", [id]);
         if (result.length > 0) {
@@ -402,13 +405,13 @@ app.post('/insert', (req, res) => {
 app.post('/update', (req, res) => {
     const { id, pw } = req.body;
     if (id == "" || pw == "") {
-        res.send('User-id와 Password를 입력하세요.')
+        res.write("<script>alert('User-id와 password를 입력하세요.')</script>");
     } else {
         const result = connection.query("select * from user where userid=?", [id]);
         console.log(result);
         // res.send(result);
         if (result.length == 0) {
-            templete_nodata(res)
+            templete_nodata(res);
         } else {
             const result = connection.query("update user set passwd=? where userid=?", [pw, id]);
             console.log(result);
@@ -423,13 +426,13 @@ app.post('/update', (req, res) => {
 app.post('/delete', (req, res) => {
     const id = req.body.id;
     if (id == "") {
-        res.send('User-id를 입력하세요.')
+        res.write("<script>alert('User-id를 입력하세요.')</script>");
     } else {
         const result = connection.query("select * from user where userid=?", [id]);
         console.log(result);
         // res.send(result);
         if (result.length == 0) {
-            templete_nodata(res)
+            templete_nodata(res);
         } else {
             const result = connection.query("delete from user where userid=?", [id]);
             console.log(result);

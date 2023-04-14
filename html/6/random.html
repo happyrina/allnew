@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random 숫자 추출</title>
+</head>
+
+<body>
+    <h3>Random 숫자 추출</h3>
+    <hr>
+    <script>
+        let n = prompt("Random 숫자 최대값을 입력하세요.", 45);
+        n = parseInt(n); //문자열을 숫자로 바꿈
+        let x = Math.floor(Math.random() * (n - 1) + 1);
+        document.write("Random value : " + x);
+    </script>
+</body>
+
+</html>
