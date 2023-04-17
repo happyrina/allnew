@@ -3,43 +3,82 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>while 문</title>
+    <title>MyCalendar</title>
+    <style>
+        table {
+            border-collapse: co;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgb(248, 139, 161);
+            font: 15px sans-serif;
+            text-align: center;
+            font-weight: bolder;
+        }
+
+        #calendar td {
+            background-color: #f6e3e3;
+            padding: 10px;
+        }
+
+        tr:hover {
+            cursor: pointer;
+        }
+
+        h3 {
+            text-align: center;
+            text-shadow: 1px 1px 1px 1px;
+            font-size: 35px;
+            font-weight: bolder;
+            color: rgb(248, 139, 161);
+            text-decoration-line: underline;
+            text-decoration-style: double;
+            text-decoration-thickness: 2px;
+            text-underline-position: under;
+            padding-bottom: 10px;
+            -webkit-text-stroke: 1.5px rgb(0, 0, 0);
+        }
+    </style>
 </head>
 
 <body>
-    <!DOCTYPE html>
-    <html>
-
-    <head>
-        <title>Calendar</title>
-        <link rel="stylesheet" href="calendar.css">
-    </head>
-
-    <body>
-        <div id="calendar">
-            <div id="header">
-                <span id="month"></span>
-                <span id="year"></span>
-            </div>
-            <table id="days">
-                <tr>
-                    <th>Sun</th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th>Sat</th>
-                </tr>
-            </table>
-            <table id="dates">
-            </table>
-        </div>
-        <script src="calendar.js"></script>
-    </body>
-
-    </html>
-
+    <h3>Calendar</h3>
+    <!-- <hr style="border: 2px solid rgb(246, 102, 131); margin-bottom: 50px;  "/> -->
+    <script>
+        let input = prompt("원하는 년도와 달을 입력하세요.(예 : 202304)", 202304);
+        const input_year = input.substr(0, 4);
+        const input_month = input.substr(4, 2);
+        var startDay = new Date(input_year + "-" + input_month).getDay();
+        var endDay = new Date(input_year, input_month, 0).getDate();
+    </script>
+    <table id="calendar" align="center" width="400" height="300" border-left="1\px solid #000000" border-
+        right="1px solid #000000" border- top="1px solid #000000" border- bottom="1px solid #000000">
+        <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Thu</th>
+                <th>Wed</th>
+                <th>Thr</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+        </thead>
+        <script>
+            let i = 1;
+            for (i = 1; i <= endDay + startDay; i++) {
+                if (i % 7 == 1) document.write("<tr>");
+                if (i <= startDay) document.write("<td></td>");
+                if (i > startDay) {
+                    document.write("<td>");
+                    document.write(i - startDay);
+                    document.write("</td>");
+                }
+                if (i % 7 == 0) document.write("</tr>");
+            }
+        </script>
+    </table>
 </body>
 
 </html>
