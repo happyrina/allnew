@@ -18,7 +18,7 @@
             this.vacancy = vacancy;
 
             this.info = function () {
-                let vacancyText = (this.vacancy === 0) ? "예약 완료" : "예약 불가";
+                let vacancyText = (this.vacancy == 0) ? "예약 완료" : "예약 불가";
                 document.write(`
                     방 번호: ${this.roomnumber} <br>
                     방 유형: ${this.roomtype} <br>
@@ -27,10 +27,21 @@
                     객실 상태: ${vacancyText} <br><hr>
                 `);
             };
+
             //메소드
             //객실은 0이면 예약완료, 1이면 공실의 개수, 그 외엔 예약 불가
             //현재 남은 공실은 ""개 입니다.
             //rental??????????????????????
+            
+            this.rental = function (customer, gender, age, job, price ) {
+                this.totalroom -= vacancy
+                document.write
+            //전체에서 공실을 빼면 rental이 완료된 방이 ____개 있습니다!
+            //현재 rental이 완료된 방은 _____에게 "가격"에 팔렸습니다!
+
+            
+            }
+
         }
 
     </script>

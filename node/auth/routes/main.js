@@ -95,7 +95,6 @@ var connection = new mysql({
 });
 
 const app = express()
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
