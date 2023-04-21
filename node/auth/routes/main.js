@@ -156,7 +156,6 @@ function templete_result(result, res) {
     res.end(templete);
 }
 
-
 app.get('/select', (req, res) => {
     const result = connection.query('select * from user');
     console.log(result);
