@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>mongoose Example</title>
+</head>
+
+<body>
+    <h1>mongoose Example</h1>
+    <hr>
+    <form method="post" action="/insert" name="mongoform" target="targetURL">
+        <input type="button" value="Users Collection" onclick='document.targetURL.location.href="/list"' />
+        <p>
+            userid <input type="text" size="10" name="userid">
+            <input type="button" value="get"
+                onclick='document.targetURL.location.href="/get?input="+document.mongoform.userid.value'>
+        </p>
+        <p>name <input type="text" size="10" name="name"></p>
+        <p>city <input type="text" size="10" name="city"></p>
+        <p>age <input type="text" size="10" name="age"></p>
+        <p>sex <input type="radio" name="sex" value="male" checked> 남성
+            <input type="radio" name="sex" value="female"> 여성
+        </p>
+        <p>
+            <input type="submit" value="insert" onclick='this.form.action="/insert"' />
+            <input type="submit" value="update" onclick='this.form.action="/update"' />
+            <input type="submit" value="delete" onclick='this.form.action="/delete"' />
+        </p>
+    </form>
+    <hr>
+    <iframe name="targetURL" class="iframe-preview center" width="90%" height="500" style="border:none;" src="/Hello">
+    </iframe>
+</body>
+
+</html>
