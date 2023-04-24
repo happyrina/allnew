@@ -1,0 +1,33 @@
+{
+  "name": "mysql2-web",
+  "version": "1.0.0",
+  "main": "mysql2.js",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "circular-json": "^0.5.9",
+    "cookie-parser": "^1.4.6",
+    "denque": "^2.1.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "generate-function": "^2.3.1",
+    "iconv-lite": "^0.6.3",
+    "is-property": "^1.0.2",
+    "long": "^5.2.3",
+    "lru-cache": "^8.0.5",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.2.3",
+    "named-placeholders": "^1.1.3",
+    "path": "^0.12.7",
+    "request": "^2.88.2",
+    "safer-buffer": "^2.1.2",
+    "seq-queue": "^0.0.5",
+    "sqlstring": "^2.3.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

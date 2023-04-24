@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>숫자를 입력 받으면 소수인지 아닌지 구하는 워커 태스크</title>
+</head>
+
+<body>
+    <h3>숫자를 입력 받으면 소수인지 아닌지 구하는 워커 태스크</h3>
+
+    <hr>
+    <input id="number" type="text" size="10">
+    <button type="button" id="checked" onclick="send()">checked</button>
+    <script>
+        let checkedWorker = new Worker("prime.js"); // 워커 태스크 생성함 prime.js로
+
+        function send() { // 워크 태스크에 시작 숫자
+            let parameters = { // 시작 숫자와 끝 숫자로 구성된 객체
+
+                num: document.getElementById("number").value,
+
+            };
+            // 시작 숫자와 끝 숫자를 담은 객체를 워커 태스크로 전송
+            checkedWorker.postMessage(parameters);
+        }
+
+        // 워커 태스크로부터 결과를 기다리는 리스너 등록
+        checkedWorker.onmessage = function (e) {
+            // 워커 태스크로부터 전달받은 합 출력
+            document.getElementById("checked").value = e.data;
+        }
+
+    </script>
+</body>
+
+</html>
