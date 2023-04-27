@@ -1,0 +1,140 @@
+.login {
+    width: 410px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.login h2 {
+    padding: 0 0 20px;
+    border-bottom: 2px solid #111;
+    text-align: center;
+    line-height: 1;
+    font-size: 33px;
+    color: #111;
+}
+
+
+
+.login>ul {
+    padding: 40px 0 33px;
+    list-style: none;
+}
+
+.login>ul li {
+    padding: 0 0 12px;
+    text-align: left;
+}
+
+.login>ul li input {
+    width: 100%;
+    height: 46px;
+    box-sizing: border-box;
+    text-indent: 16px;
+}
+
+.login>ul li input::-webkit-input-placeholder {
+    font-size: 16px;
+    color: #9fa19f;
+    text-indent: 16px;
+}
+
+/* placeholder 잡는법 / text-indent = 들여쓰기*/
+
+.login>ul li input[type="checkbox"] {
+    position: absolute;
+    left: -3000px;
+}
+
+.login>ul li input[type="checkbox"]:checked+label {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+}
+
+.login>ul li input[type="checkbox"]+label {
+    height: 36px;
+    line-height: 36px;
+}
+
+.login>ul li input[type="checkbox"]+label:before {
+    content: "";
+    display: inline-block;
+    margin: 0 10px 0 0;
+    vertical-align: -5px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #333;
+    background: #fff;
+    list-style: none;
+}
+
+.login li input[type="checkbox"]:checked+label:before {
+    background: url(checkicon.png) no-repeat center #333;
+    border-color: #333;
+    list-style: none;
+}
+
+.login button {
+    width: 100%;
+    height: 56px;
+    font-size: 18px;
+    color: #fff;
+    background: #00bfff;
+    list-style: none;
+}
+
+/*버튼은 세로 가운데 정렬 자동이기 떄문에 line-height:56px; 안줘도 된다. 높이만 주면
+텍스트가 알아서 가운데 정렬 들어감*/
+
+.login div {
+    padding: 0 0 45px;
+}
+
+.login div ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.login div ul li {
+    position: relative;
+    padding: 0 18px;
+}
+
+.login div ul li~li:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3px;
+    height: 14px;
+    width: 1px;
+    background: #111;
+    transform: rotate(15deg);
+}
+
+/*물결표시를하게되면 퍼스트차일드를 제외한 나머지
+들이 선택됨*/
+.login div ul li a {
+    font-size: 14px;
+    color: #111;
+    margin-right: 35px;
+}
+
+.login>a {
+    padding: 0 0 2px;
+    font-size: 14px;
+    color: #666;
+    border-bottom: 1px solid #666;
+}
+
+/* 언더라인 긋는 3가지 방법 :
+.login > a { font-size: 14px; color: #666; text-decoration: underline;}
+
+.login > a { position: relative; font-size: 14px; color: #666;}
+.login > a:after { content:""; position:absolute; left:0; bottom:0; width: 100%;
+height: 1px; background: #666; \}
+
+.login > a { padding: 0 0 2px; font-size: 14px; color: #666; border-bottom: 1px solid #666;}
+주변에 다른 컨텐츠가 있으면 padding을 쓰면 안된다. 주변에 영향을 미치기 때문! 주의하자~!*/

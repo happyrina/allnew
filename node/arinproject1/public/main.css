@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #00bfff;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    position: relative;
+}
+
+nav {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+.today-games,
+.calendar {
+    margin-bottom: 2em;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#bookingBtn {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+
+}

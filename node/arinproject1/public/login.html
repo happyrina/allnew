@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>log-in</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="login.css">
+
+</head>
+
+<body>
+
+    <form class="login" method="post" action="/login">
+        <h2>LOGIN</h2>
+        <ul>
+            <li><input type="text" placeholder="아이디" title="아이디입력" name=userID></li>
+            <li><input type="password" placeholder="비밀번호" title="비밀번호입력" name=userPW></li>
+            <li><input type="checkbox" id="chk_id"><label for="chk_id">아이디저장</label></li>
+            <li><button type="submit" formaction="/login">로그인</button></li>
+        </ul>
+
+        <div>
+            <ul>
+                <li><a href="register.html">회원가입</a></li>
+                <li><a href="main.html">HOME</a></li>
+            </ul>
+        </div>
+    </form>
+
+
+
+</body>
+
+</html>

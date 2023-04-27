@@ -336,7 +336,7 @@ app.get('/selectQuery', (req, res) => {
 // request O, query O
 app.post('/selectQuery', (req, res) => {
     const id = req.body.id;
-    // console.log(req.body);
+    // console.log(req.body)
     const result = connection.query("select * from user where userid=?", [id]);
     console.log(result);
     res.send(result);
