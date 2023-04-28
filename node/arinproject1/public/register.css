@@ -1,6 +1,6 @@
 .login {
     width: 410px;
-    position: absolute;
+    position: absolute; /*위치를 절대적으로 지정*/
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);

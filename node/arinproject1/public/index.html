@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- HTML 문서 타입을 지정합니다. -->
+<html lang="ko">
+<!-- 문서 언어를 한국어로 지정합니다. -->
+
+<head>
+    <!-- 웹 페이지의 정보와 설정을 담는 head 요소입니다. -->
+    <title>log-in</title>
+    <!-- 웹 페이지의 제목을 설정합니다. -->
+    <meta charset="UTF-8">
+    <!-- 문서 인코딩을 UTF-8로 설정합니다. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 화면 너비에 맞춰서 조절하고 초기 화면 배율을 1.0으로 설정합니다. -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- IE 브라우저 버전 호환성 문제를 해결하기 위한 설정입니다. -->
+    <link rel="stylesheet" href="login.css">
+    <!-- CSS 스타일시트 파일을 연결합니다. -->
+</head>
+
+<body>
+    <!-- 웹 페이지의 내용을 담는 body 요소입니다. -->
+    <form class="login" method="post" action="/login">
+        <!-- 로그인 폼입니다. -->
+        <h2>LOGIN</h2>
+        <!-- 로그인 폼의 제목입니다. -->
+        <ul>
+            <!-- 순서 없는 목록을 나타내는 ul 요소입니다. -->
+            <li><input type="text" placeholder="아이디" title="아이디입력" name=userID></li>
+            <!-- 아이디를 입력받는 input 요소입니다. -->
+            <li><input type="password" placeholder="비밀번호" title="비밀번호입력" name=userPW></li>
+            <!-- 비밀번호를 입력받는 input 요소입니다. -->
+            <li><input type="checkbox" id="chk_id"><label for="chk_id">아이디저장</label></li>
+            <!-- 아이디 저장에 대한 checkbox와 label입니다. -->
+            <li><button type="submit">로그인</button></li>
+            <!-- 로그인 버튼입니다. -->
+        </ul>
+        <div>
+            <!-- 기타 내용을 담는 div 요소입니다. -->
+            <ul>
+                <!-- 순서 없는 목록을 나타내는 ul 요소입니다. -->
+                <li><a href="register.html">회원가입</a></li>
+                <!-- 회원가입 링크입니다. -->
+                <li><a href="main.html">HOME</a></li>
+                <!-- HOME 링크입니다. -->
+            </ul>
+        </div>
+    </form>
+</body>
+
+</html>

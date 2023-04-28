@@ -26,12 +26,12 @@ h1 {
     /* 애니메이션 효과 추가 */
 }
 
-
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2em;
+    width: 70%;
 }
 
 .game-selection,

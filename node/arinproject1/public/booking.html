@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -18,7 +18,7 @@
             <h2>경기 선택</h2>
             <select id="gameSelect">
                 <option value="" disabled selected>경기를 선택하세요</option>
-                <!-- 예시 경기 데이터 -->
+                예시 경기 데이터
                 <option value="game1">2023-05-02 Doosan vs. Kia</option>
                 <option value="game2">2023-05-02 Doosan vs. Kia</option>
             </select>
@@ -53,6 +53,89 @@
             const selectedGame = gameSelect.options[gameSelect.selectedIndex].text;
 
             alert(`선택한 경기: ${selectedGame}\n티켓 수: ${ticketCount.value}`);
+        });
+    </script>
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>야구 경기 예매</title>
+    <link rel="stylesheet" href="booking.css" />
+</head>
+
+<body>
+    <header>
+        <h1>야구 예매</h1>
+    </header>
+    <main>
+        <section class="ticket-selection">
+            <h2>좌석 선택</h2>
+            <div>
+                <label for="selectTeam">구단:</label>
+                <select id="selectTeam">
+                    <option value="" disabled selected>구단을 선택하세요</option>
+                    <option value="doosan">두산 베어스</option>
+                    <option value="kia">기아 타이거즈</option>
+                </select>
+            </div>
+            <div>
+                <label for="selectSeat">좌석:</label>
+                <select id="selectSeat">
+                    <option value="" disabled selected>좌석을 선택하세요</option>
+                    <option value="1">레드존</option>
+                    <option value="2">블루존</option>
+                </select>
+            </div>
+            <div>
+                <label for="selectSeatNum">좌석 번호:</label>
+                <select id="selectSeatNum">
+                    <option value="" disabled selected>좌석 번호를 선택하세요</option>
+                    <option value="1">1111</option>
+                </select>
+                <div>
+                    <label for="selectWeekday">요일:</label>
+                    <select id="selectWeekday">
+                        <option value="" disabled selected>요일을 선택하세요</option>
+                        <option value="weekday">주중</option>
+                        <option value="weekend">주말</option>
+                    </select>
+                </div>
+                <form id="ticketForm" onsubmit="event.preventDefault();">
+                    <label for="ticketCount">티켓 수:</label>
+                    <input type="number" id="ticketCount" name="ticketCount" min="1" value="1" />
+                    <div id="clickbooking">
+                        <button type="submit">예매하기</button>
+                    </div>
+                </form>
+        </section>
+        <div>
+            <ul>
+                <li style="list-style: none;"><a href="main.html">홈으로</a></li>
+            </ul>
+        </div>
+    </main>
+    <script>
+        document.getElementById("ticketForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const selectTeam = document.getElementById("selectTeam");
+            const selectSeat = document.getElementById("selectSeat");
+            const selectSeatNum = document.getElementById("selectSeatNum");
+            const selectWeekday = document.getElementById("selectWeekday");
+            const ticketCount = document.getElementById("ticketCount");
+            const selectedTeam = selectTeam.options[selectTeam.selectedIndex].text;
+            const selectedSeat = selectSeat.options[selectSeat.selectedIndex].text;
+            const selectedSeatNum = selectSeatNum.value;
+            const selectedWeekday = selectWeekday.options[selectWeekday.selectedIndex].text;
+
+            alert(
+                `선택한 경기: 야구 예매\n구단: ${selectedTeam}\n좌석: ${selectedSeat} ${selectedSeatNum}번\n요일: ${selectedWeekday}\n티켓 수: ${ticketCount.value}`
+            );
         });
     </script>
 </body>
