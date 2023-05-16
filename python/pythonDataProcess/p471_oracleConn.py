@@ -1,11 +1,12 @@
 import cx_Oracle
 
-cx_Oracle.init_oracle_client(lib_dir="/Users/arin/oraclexe/instantclient_19_10")
-conn = None #접속 객체
-cur = None #커서 객체
+# cx_Oracle.init_oracle_client(lib_dir="/Users/arin/oraclexe/instantclient_19_10")
+cx_Oracle.init_oracle_client(lib_dir="/usr/local/OracleXE/instantclient_19_19")
+conn = None  # 접속 객체
+cur = None  # 커서 객체
 
 try:
-    #아이디/비번#hostname:port_number/sid
+    # 아이디/비번#hostname:port_number/sid
     loginfo = 'hr/1234@192.168.1.197:1521/xe'
     conn = cx_Oracle.connect(loginfo)
     print(type(conn))
