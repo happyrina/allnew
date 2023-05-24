@@ -165,7 +165,6 @@ import json
 import pandas as pd
 from pymongo import MongoClient
 
-# 데이터 프레임 생성
 with open("2022.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 df1 = pd.DataFrame(data)
@@ -176,14 +175,13 @@ df1["상대공항코드"] = df1["상대공항"].apply(lambda x: x.split("(")[1].
 
 df2 = pd.read_csv("citydic.csv")
 
-merged_df = pd.merge(df1, df2, left_on="상대공항코드",
-                     right_on="공항코드1(IATA)", how="inner")
+merged_df = pd.merge(df1, df2, left_on="상대공항코드", right_on="공항코드1(IATA)", how="inner")
 
 merged_df["여객(명)"] = pd.to_numeric(merged_df["여객(명)"], errors="coerce")
 
 top10_df = merged_df.nlargest(10, "여객(명)")
 
-# MongoDB 연결
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.relpath("./")))
 secret_file = os.path.join(BASE_DIR, "../secret.json")
 
@@ -210,12 +208,12 @@ db = client["miniProject2"]
 db.drop_collection("collection2")
 collection = db["collection2"]
 
-# 상대공항과 도시명 추출 후 삽입
+
 for _, row in top10_df.iterrows():
-    document = {"상대공항": row["상대공항"], "도시명": row["도시명"]}
+    document = {"상대공항": row["상대공항"], "도시명": row["도시명"], "한글국가명": row["한글국가명"]}
     collection.insert_one(document)
 
-# MongoDB에서 데이터 조회 및 출력
+
 documents = collection.find()
 for document in documents:
     print(document)
