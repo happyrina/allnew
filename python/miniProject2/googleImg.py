@@ -43,18 +43,18 @@ mycol = mydb['imgdb']
 async def insertMongo():
 
     service = build("customsearch", "v1",
-                    developerKey="")
+                    developerKey="AIzaSyANoF3rAgGXjcCLa9VCMPhxO0hB9RTn598")
 
     res = service.cse().list(
-        q='일본',
-        cx='',
+        q='싱가포르여행',
+        cx='17f4a04ca469e49f6',
         searchType='image',
         num=10,
         imgType='clipart',
         fileType='png',
         safe='off'
     ).execute()
-    id = 1
+
     if not 'items' in res:
         print('No result !!\nres is: {}').format(res)
     else:
@@ -65,6 +65,6 @@ async def insertMongo():
             imgs = dict(id=item['link'])
             mycol.insert_one(imgs)
             result = mycol.find_one({})
-            id += 1
     return result
-#return의 인덱스가 맞지 않아서... 결과 값이 하나만 담겼음
+# return의 인덱스가 맞지 않아서... 결과 값이 하나만 담겼음
+# __여행을 검색시, 해당 여행 검색에 맞는 이미지가 나와야함!
