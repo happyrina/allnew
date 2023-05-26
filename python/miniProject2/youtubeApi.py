@@ -46,7 +46,7 @@ async def get_youtube_videos(keywords: str, year: int, month: int):
         publishedAfter=published_after_date.isoformat("T") + "Z",
         # 이 날짜 이전에 게시된 비디오만 검색합니다.
         publishedBefore=published_before_date.isoformat("T") + "Z",
-        maxResults=20,  # 최대 20개의 결과를 반환하도록 설정합니다.
+        maxResults=50,  # 최대 20개의 결과를 반환하도록 설정합니다.
     )
 
     search_response = search_request.execute()  # 검색 요청을 실행하고 결과를 받아옵니다.
@@ -73,3 +73,4 @@ async def get_youtube_videos(keywords: str, year: int, month: int):
     return result  # 동영상 정보를 담은 리스트를 반환합니다.
 
 # python -m uvicorn project1:app --host 0.0.0.0 --port 3000 --reload
+

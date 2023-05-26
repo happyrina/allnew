@@ -169,17 +169,9 @@ with open("2022.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 df1 = pd.DataFrame(data)
 df1 = df1.iloc[2:]
-df1.columns = ["노선", "상대공항", "운항(편)", "여객(명)", "화물(톤)"]
+df1.columns = ["노선", "airport_code", "운항(편)", "여객(명)", "화물(톤)"]
 df1 = df1.reset_index(drop=True)
-df1["상대공항코드"] = df1["상대공항"].apply(lambda x: x.split("(")[1].replace(")", ""))
-
-df2 = pd.read_csv("citydic.csv")
-
-merged_df = pd.merge(df1, df2, left_on="상대공항코드", right_on="공항코드1(IATA)", how="inner")
-
-merged_df["여객(명)"] = pd.to_numeric(merged_df["여객(명)"], errors="coerce")
-
-top10_df = merged_df.nlargest(10, "여객(명)")
+df1["상대공항코드"] = df1["airport_code"].apply(lambda x: x.split("(")[1].replace(")", ""))
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.relpath("./")))
