@@ -23,16 +23,23 @@ maven/target
 node/**/node_modules
 node/**/package-lock.json
 
+
 ## python
 python/**/.venv
+python/**/.env
+python/miniProject2/lib
+python/miniProject2/myenv
 python/**/__pycache__/
 python/**/.idea
 python/secret.json
+python/**/__init__.py
+
 
 ## mongodb
 mongodb/*.json
 mongodb/**/*.json
 mongodb/**/*.mp4
+mongodb/backup
 
 ##oracle
 oracle/node/dbConfig.js
