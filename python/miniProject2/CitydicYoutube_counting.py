@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from pymongo import MongoClient
+from datetime import datetime
 import requests
 import json
 import os
+
 
 app = FastAPI()
 
@@ -31,47 +33,67 @@ print("Connected to MongoDB....")
 db = client["miniProject2"]
 collection = db["datacount"]  # MongoDB에 데이터 넣기
 
+def load_data_from_json():
+    with open("dataset.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+    return data
+
 
 @app.get("/find")
-async def find_videos(year: int):
-    months = range(1, 13)  # 1월부터 12월까지의 월
-    years = [2018, 2020, 2022, 2023]  # 2018, 2020, 2022, 2023년까지의 연도
-    city_names = ['도쿄', '오사카', '후쿠오카']  # 검색하려는 도시 리스트
+async def get_youtube_videos(search_keyword: str, year: int):
+    city_names = ['도쿄', '오사카', '후쿠오카']
+    years = [2018, 2020, 2022, 2023]
+    months_2023 = range(1, 6) if datetime.now().year == 2023 else range(1, 13)
 
-    # 연도별 월별 도시별 키워드 카운트를 저장할 딕셔너리
-    count_dict = {year: {month: {city: 0 for city in city_names}
-                         for month in months} for year in years}
+    if year not in years:
+        return {"error": "잘못된 연도입니다."}
 
-    file_names = ["arin_2018.json", "arin_2020.json",
-                  "arin_2022.json", "arin_2023.json"]
+    if year == 2023:
+        valid_months = months_2023
+    else:
+        valid_months = range(1, 13)
 
-    for year, file_name in zip(years, file_names):
-        for month in months:
-            if year == 2023 and month > 3:  # 2023년은 3월까지만 데이터
-                break
+    data = load_data_from_json()
 
-            # JSON 파일에서 데이터를 가져와서 youtube_videos 변수에 저장
-            with open(file_name, "r") as file:
-                youtube_videos = json.load(file)
+    count_dict = {year: {month: 0 for month in valid_months}}
 
-            titles = [video["Title"] for video in youtube_videos]
-            tags = [
-                video["Tags"] if video["Tags"] != "No tags." else []
-                for video in youtube_videos
-            ]
-            for city in city_names:
-                documents = collection.find({"도시명": city})  # 해당 도시의 모든 문서를 찾음
-                for document in documents:
-                    # 연도별 월별 도시별 키워드 카운트를 업데이트
-                    count_dict[year][month][city] += document.get(
-                        str(month), 0)
-                for title, tag_list in zip(titles, tags):
-                    title_word_count = title.count(keyword)
-                    tag_word_count = sum(tag.count(keyword)
-                                         for tag in tag_list)
-                    count_dict[year][month][city] += title_word_count + \
-                        tag_word_count  # 연도별 월별 도시별 키워드 카운트를 업데이트
-    return count_dict  # 최종 결과를 반환
+    for year_data in data:
+        if year_data["Year"] == year:
+            for item in year_data["Data"]:
+                month = int(item["Published At"][5:7])
+                if month in valid_months:
+                    title_word_count = item["Title"].count(search_keyword)
+                    tag_word_count = sum(tag.count(search_keyword)
+                                         for tag in item["Tags"])
+                    count_dict[year][month] += title_word_count + \
+                        tag_word_count
+
+    result = {
+        "search_keyword": search_keyword,
+        "count_dict": count_dict
+    }
+    return result
+
+# @app.get("/find")
+# async def find_videos(year: int, keyword: str):
+#     months = range(1, 13)  # 1월부터 12월까지의 월
+#     years = [2018, 2020, 2022, 2023]  # 2018, 2020, 2022, 2023년까지의 연도
+#     city_names = ['도쿄', '오사카', '후쿠오카']  # 검색하려는 도시 리스트
+
+#     # 연도별 월별 도시별 키워드 카운트를 저장할 딕셔너리
+#     count_dict = {year: {month: {city: 0 for city in city_names}
+#                          for month in months} for year in years}
+
+#     file_names = ["dataset.json"]
+
+#     for year, file_name in zip(years, file_names):
+#         if year == year:
+#             break
+
+#         # Remaining code...
+
+#     return count_dict  # 최종 결과를 반환
+
 
 # 33333
 
