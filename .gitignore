@@ -29,6 +29,7 @@ python/**/.venv
 python/**/.env
 python/miniProject2/lib
 python/miniProject2/myenv
+python/miniProject2/mecab-0.996-ko-0.9.2
 python/**/__pycache__/
 python/**/.idea
 python/secret.json
