@@ -34,7 +34,8 @@ python/**/__pycache__/
 python/**/.idea
 python/secret.json
 python/**/__init__.py
-
+python/**/package.json
+python/**/node_modules
 
 ## mongodb
 mongodb/*.json
