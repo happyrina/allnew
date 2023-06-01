@@ -1,12 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dataWeb</title>
+  <meta charset="UTF-8">
+  <title>오디가조</title>
+  <link rel="stylesheet" type="text/css" href="">
+  <style>
+    @font-face {
+      font-family: 'new_font';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    body {
+      font-family: 'new_font', Arial, sans-serif;
+      background-image: url('https://cdn.pixabay.com/photo/2022/01/01/15/40/train-6907884_1280.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      text-align: center;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    /* 중간 nav 부분 */
+
+    nav#midMenu {
+      background-color: #333;
+      overflow: hidden;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav#midMenu ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    nav#midMenu li {
+      float: left;
+    }
+
+    nav#midMenu li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 10px 10px;
+      text-decoration: none;
+      margin-right: 100px;
+      margin-left: 100px;
+    }
+
+    nav#midMenu li a:hover {
+      background-color: #111;
+    }
+
+    header {
+      padding: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      color: grey;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    #logoimg {
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .logo-session-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 80px;
+    }
+
+    h1,
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 35px;
+    }
+
+    button {
+      font-family: 'new_font', Arial, sans-serif;
+      display: inline-block;
+      padding: 9px 15px;
+      font-size: 1em;
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      background-color: black;
+      color: white;
+      border: none;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: rgb(65, 61, 61);
+    }
+
+    section {
+      width: 1300px;
+      height: 1300px;
+      font-size: 10px;
+      background-color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 20px;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    div {
+      font-size: 25px;
+    }
+  </style>
 </head>
+
 <body>
-    
+  <header>
+
+    <body onload="getRadioValueimg();">
+      <header>
+        <img src="/logoimg.png" id="logoimg" onclick="location.href='firstpage.html'">
+      </header>
+  </header>
+  <main>
+    <nav id="midMenu">
+      <ul>
+        <li><a class="midMenuclass" href="main.html">내국인출국분석TOP10</a></li>
+        <li><a class="midMenuclass" href="#">도시리스트분석</a></li>
+        <li><a class="midMenuclass" href="#">관심언급량분석</a></li>
+        <li><a class="midMenuclass" href="#">결과분석</a></li>
+      </ul>
+    </nav>
+    <br>
+    <section>
+      <div class="search">
+        <form onsubmit="event.preventDefault(); getRadioValueimg();">
+          <div>
+            <input type="radio" id="2018" name="year" value="2018">
+            <label for="2018">2018</label>
+            <input type="radio" id="2020" name="year" value="2020">
+            <label for="2020">2020</label>
+            <input type="radio" id="2022" name="year" value="2022">
+            <label for="2022">2022</label>
+            <input type="radio" id="total" name="year" value="total">
+            <label for="total">total</label>&nbsp;&nbsp;
+            <button type="submit">조회</button>
+          </div>
+
+        </form>
+      </div>
+      <h2>** 도시별 내국인 출국 분석 **</h2>
+      <img src="" id="output_img_figure">
+      <hr>
+      <h2>** 해당 도시별 국가 점유율 **</h2>
+      <img src="" id="output_img_piechart">
+      <script>
+        function getRadioValueimg() {
+          const imageFigure = document.getElementById('output_img_figure');
+          const imagePiechart = document.getElementById('output_img_piechart');
+          const radios = document.querySelectorAll('input[name="year"]');
+
+          for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+              imageFigure.src = '/image/_figure' + radios[i].value;
+              imagePiechart.src = '/image/piechart' + radios[i].value;
+              break;
+            }
+          }
+        }
+      </script>
+    </section>
+  </main>
 </body>
+
+</html>
+</main>
+</body>
+
 </html>

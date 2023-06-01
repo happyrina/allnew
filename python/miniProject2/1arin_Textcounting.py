@@ -1,4 +1,7 @@
 # defaultdict는 누락된 값을 제공하기 위해 팩토리 함수를 호출하는 딕셔너리 서브 클래스
+import json
+from pydantic import BaseModel
+from fastapi import UploadFile, File
 from operator import itemgetter
 from collections import defaultdict
 from fastapi import FastAPI  # FastAPI는 빠르고 쉽게 API를 만들 수 있도록 도와주는 웹 프레임워크
@@ -9,9 +12,31 @@ from konlpy.tag import Okt  # Okt는 형태소 분석기
 import numpy as np  # numpy는 배열, 행렬 등 수치 연산을 위한 라이브러리
 import os  # os 모듈은 운영체제와 상호작용하는 데 사용
 import json  # json 모듈은 JSON 데이터를 파싱하는 데 사용
+from starlette.responses import StreamingResponse
+from fastapi import FastAPI, HTTPException
+import matplotlib.pyplot as plt
+import requests
+from fastapi import FastAPI
+from pydantic import BaseModel
+import httpx
 
-# FastAPI 인스턴스 생성
+
+# class ValueResponse(BaseModel):
+#     value: str
+
+
 app = FastAPI()
+
+
+# @app.get("/save_and_retrieve_file")
+# async def save_and_retrieve_file():
+#     response = requests.get("http://192.168.1.79:3000/send")
+#     data = response.json()
+
+#     with open("my_file.json", "w") as file:
+#         json.dump(data, file)
+
+#     return {"filename": "my_file.json"}
 
 # Secret 정보(여기서는 MongoDB 연결 정보)를 담고 있는 파일을 불러옴
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.relpath("./")))
@@ -50,7 +75,6 @@ def load_data_from_json():
         data = json.load(file)
     return data
 
-
  # 일본과 관련된 단어 리스트
 city_name = ['도쿄', '오사카', '후쿠오카']
 
@@ -61,6 +85,7 @@ def process_word(word, count_dict):
     if "일본" in word or any(city in word for city in city_name):
         return
     count_dict[word] += 1
+
 
     # 불용어 리스트입니다. 이 단어들은 분석에서 제외
 stop_words = np.array(['국', '너', '꼭', '가야', '곳', '알짜', '딩고', '편', '민', '짐', '만난', '멋사', '핑맨', '잠뜰', '잔뜩', '전격', '페스트', '비제', '슴', '에이', '로그', '조디', '바인', '고추', '보지', '섹스', '섹', '드립', '리타', '시', '사', '템', '딥', '쿠', '롯', '청', '바', '무슨', '첫', '뿌셧다', '속', '영', '파', '토',
@@ -166,3 +191,5 @@ async def get_youtube_videos(year: int):
     collection.insert_one({"year": year, "result": top10_words})
 
     return top10_words
+db = client["project2"]
+collection = db["Alltextcounting"]
