@@ -145,7 +145,6 @@ plt.legend(loc='upper left', bbox_to_anchor=(1, 1), ncol=1)
 # x축 레이블 설정
 plt.xticks(x, years_to_plot)
 
-# ...<이전 코드>...
 
 filename = 'alldataGraph.png'
 plt.savefig(filename, dpi=400, bbox_inches='tight')

@@ -191,5 +191,4 @@ async def get_youtube_videos(year: int):
     collection.insert_one({"year": year, "result": top10_words})
 
     return top10_words
-db = client["project2"]
-collection = db["Alltextcounting"]
+
