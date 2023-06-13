@@ -1,32 +1,35 @@
-# 모듈 및 패키지 임포트
-import os
-import json
-import calendar  # 연도와 월의 일수 계산 모듈
-# Google API(Youtube API) 사용하기 위한 모듈
-from googleapiclient.discovery import build
-from datetime import datetime  # 날짜와 시간 다루기 위한 모듈
+# 
+from collections import defaultdict
+import re
 from fastapi import FastAPI
 from pymongo import MongoClient
+from datetime import datetime
 import requests
-from bson import ObjectId
-from urllib.parse import quote
+import json
+import os.path
+import pydantic
+from bson.objectid import ObjectId
+from typing import Optional
+from googleapiclient.discovery import build
+
+
+pydantic.json.ENCODERS_BY_TYPE[ObjectId] = str
 
 app = FastAPI()
 
-# secret.json 파일에서 API 키를 가져옵니다.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.relpath("./")))
 secret_file = os.path.join(BASE_DIR, "../secret.json")
 
 with open(secret_file) as f:
-    secrets = json.load(f)
+    secrets = json.loads(f.read())
+
 
 def get_secret(setting, secrets=secrets):
     try:
         return secrets[setting]
     except KeyError:
         errorMsg = "Set the {} environment variable.".format(setting)
-    return errorMsg
-
+        return errorMsg
 
 
 HOSTNAME = get_secret("ATLAS_Hostname")
@@ -34,42 +37,62 @@ USERNAME = get_secret("ATLAS_Username")
 PASSWORD = get_secret("ATLAS_Password")
 
 client = MongoClient(f"mongodb+srv://{USERNAME}:{PASSWORD}@{HOSTNAME}")
-db = client["miniProject2"]
-collection = db["2018youtube"]
+print("Connected to MongoDB....")
 
 db = client["miniProject2"]
-collection = db["2018count"]  # 찾아오는 데이터
+collection = db["datacount"]  # MongoDB에 데이터 넣기
+
+
+def load_data_from_json():
+    with open("dataset.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+    return data
+
+# Rest of your code...
+
+
+def process_word(word, search_keyword, count_dict):
+    if word not in count_dict:
+        count_dict[word] = 0
+    if search_keyword in word:
+        count_dict[word] += 1
+
 
 @app.get("/find")
-async def find_videos(year: int, keyword: str):
-    months = range(1, 13)  # 1월부터 12월까지의 월
-    years = [2018, 2020, 2022, 2023]  # 2018년부터 2023년까지의 연도
-    city_names = ['도쿄', '오사카', '후쿠오카']  # 검색하려는 도시 리스트
+async def get_youtube_videos(search_keyword: str, year: int):
+    city_names = ['도쿄', '오사카', '후쿠오카']
+    years = [2018, 2020, 2022, 2023]
+    months_2023 = range(1, 6) if datetime.now().year == 2023 else range(1, 13)
 
-    # 연도별 월별 도시별 키워드 카운트를 저장할 딕셔너리
-    count_dict = {year: {month: {city: 0 for city in city_names}
-                         for month in months} for year in years}
+    if year not in years:
+        return {"error": "잘못된 연도입니다."}
 
-    for year in years:
-        for month in months:
-            if year == 2023 and month > 3:  # 2023년은 3월까지만 데이터가 있다고 하셨으므로
-                break
-            youtube_videos = await get_youtube_videos(keyword, year, month)
-            titles = [video["Title"] for video in youtube_videos]
-            tags = [
-                video["Tags"] if video["Tags"] != "No tags." else []
-                for video in youtube_videos
-            ]
-            for city in city_names:
-                documents = collection.find({"도시명": city})  # 해당 도시의 모든 문서를 찾음
-                for document in documents:
-                    # 연도별 월별 도시별 키워드 카운트를 업데이트
-                    count_dict[year][month][city] += document.get(
-                        str(month), 0)
-                for title, tag_list in zip(titles, tags):
-                    title_word_count = title.count(keyword)
-                    tag_word_count = sum(tag.count(keyword)
-                                         for tag in tag_list)
-                    count_dict[year][month][city] += title_word_count + \
-                        tag_word_count  # 연도별 월별 도시별 키워드 카운트를 업데이트
-    return count_dict  # 최종 결과를 반환
+    if year == 2023:
+        valid_months = months_2023
+    else:
+        valid_months = range(1, 13)
+
+    data = load_data_from_json()
+
+    count_dict = defaultdict(int)
+
+    for year_data in data:
+        if year_data["Year"] == year:
+            for item in year_data["Data"]:
+                month = int(item["Published At"][5:7])
+                if month in valid_months:
+                    title = item["Title"]
+                    tags = item["Tags"]
+                    words = re.findall(r'\w+', title + ' '.join(tags))
+                    for word in words:
+                        process_word(word, search_keyword, count_dict)
+
+    for city_name in city_names:
+        if city_name in count_dict:
+            del count_dict[city_name]
+
+    result = {
+        "search_keyword": search_keyword,
+        "count_dict": dict(count_dict)
+    }
+    return result
