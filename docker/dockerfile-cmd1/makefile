@@ -9,5 +9,5 @@ img:
 	docker images
 rm:
 	docker rm -f $$(docker ps -aq)
-rmi:
+rmi:make 
 	docker rmi $$(docker images -q)
