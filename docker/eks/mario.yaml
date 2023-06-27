@@ -26,9 +26,10 @@ spec:
   selector:
     app: mario
   ports:
-  - port: 80
+  - nodePort : 31000
+    port: 80
     protocol: TCP
     targetPort: 8080
   type: LoadBalancer
   externalIPs:
-   - 52.78.199.126 #worker node 1 public IP
+   - 3.37.204.255
