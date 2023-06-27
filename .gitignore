@@ -51,3 +51,4 @@ oracle/node/package-lock.json
 ## .env
 .env
 .myenv
+docker/eks/demo-k8s-dos-games/
