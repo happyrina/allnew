@@ -30,3 +30,5 @@ spec:
     protocol: TCP
     targetPort: 8080
   type: LoadBalancer
+  externalIPs:
+   - 52.78.199.126 #worker node 1 public IP
