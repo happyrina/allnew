@@ -46,4 +46,89 @@ app.get("/api/users/user", (req, res) => {
     })
 })
 
+// Path param, request O, response O
+app.get("/api/users/:user_id", (req, res) => {
+    urls = "http://3.34.107.240:8000/api/users/"+req.params.user_id;
+    request(urls, {json:true}, (err, result, body) => {
+        if (err) { return console.log(err); }
+        res.send(CircularJSON.stringify(body))
+    })
+})
+
+
+// post, request body O, response O
+app.post("/api/users/userBody", (req, res) => {
+    const option = {
+        uri : 'http://3.34.107.240:8000/api/users/userBody',
+        method : 'POST',
+        form : { id : req.body.id }
+    }
+    request.post(option, (err, result, body) => {
+        if (err) { return console.log(err); }
+        res.send(CircularJSON.stringify(body))
+    })
+})
+
+// post, request body O, response O
+app.post("/api/users/add", (req, res) => {
+    const option = {
+        uri : 'http://3.34.107.240:8000/api/users/add',
+        method : 'POST',
+        form : { 
+            id : req.body.id,
+            name : req.body.name
+        }
+    }
+    request.post(option, (err, result, body) => {
+        if (err) { return console.log(err); }
+        res.send(CircularJSON.stringify(body))
+    })
+})
+
+// put, request body O, response O
+app.put("/api/users/update", (req, res) => {
+    const option = {
+        uri : 'http://3.34.107.240:8000/api/users/update',
+        method : 'PUT',
+        form : { 
+            id : req.body.id,
+            name : req.body.name
+        }
+    }
+    request.put(option, (err, result, body) => {
+        if (err) { return console.log(err); }
+        res.send(CircularJSON.stringify(body))
+    })
+})
+
+// patch, request params & body O, response O
+app.patch("/api/users/update/:user_id", (req, res) => {
+    const option = {
+        uri : 'http://3.34.107.240:8000/api/users/update/'+req.params.user_id,
+        method : 'PATCH',
+        form : { 
+            name : req.body.name
+        }
+    }
+    request.patch(option, (err, result, body) => {
+        if (err) { return console.log(err); }
+        res.send(CircularJSON.stringify(body))
+    })
+})
+
+// delete, request body O, response O
+app.delete("/api/users/delete", (req, res) => {
+    const option = {
+        uri : 'http://3.34.107.240:8000/api/users/delete/',
+        method : 'DELETE',
+        form : { 
+            user_id : req.body.user_id
+        }
+    }
+    request.delete(option, (err, result, body) => {
+        if (err) { return console.log(err); }
+        res.send(CircularJSON.stringify(body))
+    })
+})
+
 module.exports = app;
