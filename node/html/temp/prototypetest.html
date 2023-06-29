@@ -1,0 +1,64 @@
+<!-- 예약하기: 예약자 이름과 예약 시작일과 종료일을
+예약한 객실 번호와 예약 정보를 객체에 추가 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room</title>
+    <script>
+        function Room(roomnumber, roomtype, price, roomgrade, vacancy) {
+            this.roomnumber = roomnumber;
+            this.roomtype = roomtype;
+            this.price = price;
+            this.roomgrade = roomgrade;
+            this.vacancy = vacancy;
+
+            this.info = function () {
+                let vacancyText = (this.vacancy == 0) ? "예약 완료" : "예약 불가";
+                document.write(`
+                    방 번호: ${this.roomnumber} <br>
+                    방 유형: ${this.roomtype} <br>
+                    가격: ${this.price} <br>
+                    등급: ${this.roomgrade} <br>
+                    객실 상태: ${vacancyText} <br><hr>
+                `);
+            };
+
+            //메소드
+            //객실은 0이면 예약완료, 1이면 공실의 개수, 그 외엔 예약 불가
+            //현재 남은 공실은 ""개 입니다.
+            //rental??????????????????????
+            
+            this.rental = function (customer, gender, age, job, price ) {
+                this.totalroom -= vacancy
+                document.write
+            //전체에서 공실을 빼면 rental이 완료된 방이 ____개 있습니다!
+            //현재 rental이 완료된 방은 _____에게 "가격"에 팔렸습니다!
+
+            
+            }
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <h3>Hotel Reservation System</h3>
+    <hr />
+    <script>
+        let room1 = new Room(2801, "Cityview", "300,000원", "luxurysweetroom");
+        room1.info();
+
+
+
+
+    </script>
+</body>
+
+</html>

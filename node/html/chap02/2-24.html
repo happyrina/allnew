@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe브라우저윈도우</title>
+</head>
+
+<body>
+    <h3>2개의 &lt;iframe&gt;을 가집니다.</h3>
+    <hr>
+    <iframe src="leftframe.html" name="left" width="200" height="500" srcdoc="
+            <head></head>
+            <body>
+            왼쪽 프레임<br><br>
+            화면의 20%만 차지해요.. 
+      
+        <ul>
+            <li>
+                전자신문 - _self
+        </li>
+        <li>
+            W3C - 왼쪽 프레임
+        </li>
+        </ul>
+</body>
+
+</html>" </body>
+
+        <iframe src="rightframe.html" name="right" width="500" height="500" srcdoc="
+        <head></head>
+        <body>
+            <h4>right iframe</h4>
+        </body></html>" </body></iframe>
+
+        <iframe src=" http://www.daum.net" name="upper" width="50%" height="300" srdoc="
+       
+        <iframe src=" http://www.google.org" name="row" width="50%" height="500"></iframe>
+
+    </iframe>
+    </iframe>
+
+
+</body>
+
+</html>

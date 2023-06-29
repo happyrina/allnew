@@ -1,0 +1,137 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>User Authentication</title>
+    <link type="text/css" rel="stylesheet" href="admin.css">
+    <style>
+        #logoutBtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>User Authentication</h3>
+    <hr />
+    <form action="/user/insert" target="targetURL" name="userForm" method="post">
+        <p>Userid : <input type="text" size="15" name="id" /></p>
+        <p>Password : <input type="password" size="15" name="pw" /></p>
+        <input type="button" value="get select" onclick='document.targetURL.location.href="/user/select"' />&nbsp;&nbsp;
+        <input type="button" value="get selectQuery"
+            onclick='document.targetURL.location.href="/user/selectQuery?id="+document.userForm.id.value' />&nbsp;&nbsp;
+        <input type="submit" value="post insert" />&nbsp;&nbsp;<br><br>
+        <div class="buttonbox">
+            <button type="submit" formaction="/user/update" style=" font-size: 15px;">post update</button>
+            <button type="submit" formaction="/user/delete" style=" font-size: 15px;">post
+                delete</button>&nbsp;&nbsp;
+        </div>
+
+    </form>
+    <hr />
+    <iframe name="targetURL" width="70%" height="500" style="border: none" src="/user/select"></iframe>
+    <script>
+        function getParameter(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null
+                ? ""
+                : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        function sessionStore() {
+            let id = getParameter("id");
+            let now = new Date();
+            if (!window.sessionStorage) {
+                alert("세션 스토리지를 지원하지 않습니다.");
+                return;
+            }
+            sessionStorage.setItem(id, now);
+            alert(`사용자 ${id} 세션 스토리지 생성`);
+        }
+        function logout() {
+            if (confirm("로그아웃 하시겠습니까?")) {
+                let id = getParameter("id");
+                sessionStorage.removeItem(id);
+                location.href = "/main.html";
+            }
+        }
+    </script>
+
+    <body onload="sessionStore()">
+        <buton style="float: right" onclick="logout()">로그아웃</buton>
+    </body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>User Authentication</title>
+    <link type="text/css" rel="stylesheet" href="admin.css">
+    <style>
+        #logoutBtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>User Authentication</h3>
+    <hr />
+    <form action="/user/insert" target="targetURL" name="userForm" method="post">
+        <p>Nickname: <input type="text" size="15" name="nickName" /></p>
+        <p>Userid : <input type="text" size="15" name="userID" /></p>
+        <p>Password : <input type="password" size="15" name="userPW" /></p>
+        <p>Phone : <input type="text" size="15" name="phone" /></p>
+        <input type="button" value="전체 등록자 확인" onclick='document.targetURL.location.href="/user/select"' />&nbsp;&nbsp;
+        <input type="button" value="등록자 정보 확인(아이디 입력 필수)"
+            onclick='document.targetURL.location.href="/user/selectQuery?userID="+document.userForm.userID.value' />&nbsp;&nbsp;
+        <div class="buttonbox">
+            <button type="submit" formaction="/user/update" style=" font-size: 15px;">사용자 정보 업데이트</button>
+            <button type="submit" formaction="/user/delete" style=" font-size: 15px;">사용자 정보 삭제</button>&nbsp;&nbsp;
+        </div>
+
+    </form>
+    <hr />
+    <iframe name="targetURL" width="70%" height="500" style="border: none" src="/user/select"></iframe>
+    <script>
+        function getParameter(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null
+                ? ""
+                : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        function sessionStore() {
+            let id = getParameter("id");
+            let now = new Date();
+            if (!window.sessionStorage) {
+                alert("세션 스토리지를 지원하지 않습니다.");
+                return;
+            }
+            sessionStorage.setItem(id, now);
+            alert(`사용자 ${id} 세션 스토리지 생성`);
+        }
+        function logout() {
+            if (confirm("로그아웃 하시겠습니까?")) {
+                let id = getParameter("id");
+                sessionStorage.removeItem(id);
+                location.href = "/main.html";
+            }
+        }
+    </script>
+
+    <body onload="sessionStore()">
+        <buton style="float: right" onclick="logout()">로그아웃</buton>
+    </body>
+
+</html>

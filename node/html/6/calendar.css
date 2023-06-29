@@ -1,0 +1,37 @@
+#calendar {
+    margin: 0 auto;
+    width: 300px;
+}
+
+#header {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#days {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#days th {
+    font-size: 16px;
+    text-align: center;
+    padding: 5px;
+}
+
+#dates {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#dates td {
+    font-size: 16px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+#dates td.today {
+    background-color: #ccc;
+}

@@ -1,0 +1,156 @@
+@font-face {
+    font-family: 'HandonFont', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+}
+
+
+/* 폰트를 사용하려는 요소에 font-family를 지정합니다. */
+.topLayout h1 {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2);
+    letter-spacing: 2px;
+    color: white;
+    /* text-shadow: 2px 2px 2px  #000000; */
+}
+
+* {
+    margin: 0px;
+    border: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.topLayout {
+    position: sticky;
+    top: 0px;
+    height: 60px;
+    background-color: #00bfff;
+    /* opacity: 50%; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+
+
+}
+
+.topLayout a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 18px;
+    /* text-shadow: 1px 1px 0px #9f9f9f; */
+}
+
+.mainContents {
+    height: 2000px;
+    background-color: rgb(255, 255, 255);
+}
+
+.videoWrapper {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.videoWrapper h2 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: border;
+    border-radius: 5px;
+    padding: 10px;
+    color: #00bfff;
+
+
+}
+
+.videoText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+
+.videoText h2 {
+    font-size: 24px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    margin-bottom: 50px;
+}
+
+.videoText h2 {
+    font-size: 24px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+}
+
+.bookingWrapper {
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20px; */
+}
+
+#bookingBtn {
+    background-color: #00bfff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    align-items: center;
+    margin-top: 30px;
+    /* animation: blink 2s infinite; */
+}
+
+#bookingBtn button:hover {
+    background-color: #0056b3;
+}
+
+/* @keyframes blink {
+    50% {
+        opacity: 0;
+    }
+} */
+
+#body-wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+#body-content {
+    margin-top: 100px;
+    padding-bottom: 99999px;
+    /* footer의 높이 */
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background-color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* footer 하단 고정 [E] */

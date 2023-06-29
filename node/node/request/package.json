@@ -1,0 +1,17 @@
+{
+  "name": "requests",
+  "version": "1.0.0",
+  "main": "request-get.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "circular-json": "^0.5.9",
+    "express": "^4.18.2",
+    "request": "^2.88.2"
+  },
+  "description": ""
+}

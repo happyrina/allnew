@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>log-in</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="register.css"> <!-- register.css 파일을 가져옴 -->
+</head>
+
+<body>
+
+    <form class="login" method="post" action="/register"> <!-- 회원가입 정보를 전송할 주소를 "/register"로 설정 -->
+        <h2>REGISTER</h2>
+        <ul>
+            <li><input type="text" placeholder="닉네임" title="닉네임입력" name=nickName></li> <!-- 닉네임 입력란 -->
+            <li><input type="text" placeholder="아이디" title="아이디입력" name=userID></li> <!-- 아이디 입력란 -->
+            <li><input type="password" placeholder="비밀번호" title="비밀번호입력" name=userPW></li> <!-- 비밀번호 입력란 -->
+            <li><input type="test" placeholder="전화번호" title="전화번호입력" name=phone></li> <!-- 전화번호 입력란 -->
+            <li><button type="submit">회원가입</button></li> <!-- 회원가입 버튼 -->
+        </ul>
+
+        <div>
+            <ul>
+                <li><a href="index.html">뒤로가기</a></li> <!-- 뒤로가기 버튼 -->
+            </ul>
+        </div>
+    </form>
+</body>
+
+</html>

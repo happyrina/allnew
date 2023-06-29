@@ -1,0 +1,54 @@
+# .gitignore
+
+.ftpconfig
+
+## c programing
+c/**/a.out
+c/**/hello
+c/**/*.o
+c/**/test
+
+## java
+
+java/*.class
+
+##scala
+scala/**/project
+scala/**/
+
+##maven
+maven/target
+
+## nodejs
+node/**/node_modules
+node/**/package-lock.json
+
+
+## python
+python/**/.venv
+python/**/.env
+python/miniProject2/lib
+python/miniProject2/myenv
+python/miniProject2/mecab-0.996-ko-0.9.2
+python/**/__pycache__/
+python/**/.idea
+python/secret.json
+python/**/__init__.py
+python/**/package.json
+python/**/node_modules
+
+## mongodb
+mongodb/*.json
+mongodb/**/*.json
+mongodb/**/*.mp4
+mongodb/backup
+
+##oracle
+oracle/node/dbConfig.js
+oracle/node/node_modules
+oracle/node/package-lock.json
+
+## .env
+.env
+.myenv
+

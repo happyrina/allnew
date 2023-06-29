@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car prototype</title>
+
+    <script>
+        //property
+
+        //function
+        function Car(brend, grade, maxFuel, displacement, price) {
+            //프로퍼티 만들기
+            this.brand = brand;
+            this.grade = grade;
+            this.maxFuel = maxFuel;
+            this.displacement = displacement; //배기량
+            this.price = price;
+
+            //메소드 만들기
+            this.drive = function (from, to, distance) {
+                this.start = from;
+                this.end = to;
+                this.distance = distance;
+                return this.distance;
+            };
+
+            this.refueling = function (amount) {
+                this.maxFuel += amount;
+                return this.maxFuel;
+            };
+        }
+
+    </script>
+</head>
+
+<body>
+    <h3>car prototype</h3>
+    <hr>
+    <script>
+
+        let car1 = new Car("benz", "sedan", 900, 4000, 3000);
+        document.write("car1" + "<br>");
+        document.write("brand : " + car1.brand + "<br>");
+        document.write("grade : " + car1.grade + "<br>");
+        document.write("maxFuel : " + car1.maxFuel + "<br>");
+        document.write("price : " + car1.price + "<br>");
+        document.write("<hr />");
+
+        let car2 = new Car("bmw", "suv", 500, 2500, "2000만원");
+        document.write("car1" + "<br>");
+        document.write("brand : " + car2.brand + "<br>");
+        document.write("grade : " + car2.grade + "<br>");
+        document.write("maxFuel : " + car2.maxFuel + "<br>");
+        document.write("price : " + car2.price + "<br>");
+        document.write("<hr />");
+
+        document.write(
+            
+            car.distance +
+            ""
+        )
+    </script>
+</body>
+
+</html>

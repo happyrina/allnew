@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baseball Booking</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="topLayout">
+        <h1>Baseball Booking </h1>
+        <div>
+            <a href="booking.html">예매</a>
+            <a href="index.html">로그아웃</a>
+        </div>
+    </div>
+    <div class="mainContents"></div>
+
+    <!-- YouTube 동영상 재생용 iframe -->
+    <div class="videoWrapper">
+        <div id="lastvd">
+            <h2> 지난 경기 하이라이트 영상 </h2>
+        </div>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/sfBInHJkvPg" frameborder="0"
+            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div>
+            <button id="bookingBtn" onclick="window.location.href='booking.html'">예매하기</button>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <img src="footer.png" alt="Footer Image">
+    </footer>
+</body>
+
+</html>

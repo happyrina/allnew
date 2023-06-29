@@ -1,0 +1,8 @@
+# Service Definition
+version: "3.3"
+services:
+  node:
+    restart: always 
+    build: .
+    port:
+     - "8000:8000"

@@ -1,0 +1,3 @@
+use test
+db.traffic.findOne()
+db.traffic.count()

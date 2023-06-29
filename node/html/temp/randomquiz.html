@@ -1,0 +1,133 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위바위보게임</title>
+</head>
+
+<body>
+
+    <h3>가위✌🏻 바위✊🏻 보🖐🏻 게임!!</h3>
+    <hr>
+    <script>
+
+        
+
+
+
+
+
+    </script>
+</body>
+
+</html> -->
+
+<!-- 1은 가위, 2는 바위, 3은 보 -->
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title> ✌🏻가위✌🏻 ✊🏻바위✊🏻 🖐🏻보🖐🏻 게임</title>
+</head>
+
+<body>
+    <h3>✌🏻가위✌🏻 ✊🏻바위✊🏻 🖐🏻보🖐🏻 </h3>
+    <hr />
+    <script>
+        function findWinner() {
+            let mychoice = null;
+
+        function findWinner() {
+            let found = null;
+            let rspg = document.getElementsByName("rsp"); //배열값이 문자열로 들어옴!
+            
+            
+            
+            
+            //사용자 선택 값
+            for (let i = 0; i < rspg.length; i++) {
+                if (rspg[i].checked == true) found = rspg[i];
+            }
+            if (found != null)
+                alert(found.value + "이 이김");
+            else
+                alert("이 졌음");
+        }
+
+        var rspg = [];
+        rspg[1] = "가위";
+        rspg[2] = "바위";
+        rspg[3] = "보";
+
+        let rspg = Math.floor(Math.random() * 3 + 1);
+        verdict = user - com;
+        document.write("User : " + rsp[user] + " vs  Com : " + rspg[com] + "<br>");
+        if (verdict == -2 || verdict == 1)
+            document.write("당신이 이겼습니다.<br>");
+        else if (verdict == 2 || verdict == -1)
+            document.write("당신이 졌습니다.<br>");
+        else document.write("무승부입니다.<br>");
+    </script>
+
+    <form>
+        <input type="radio" name="rspg" value="✌🏻" checked> 가위
+        <input type="radio" name="rspg" value="👊🏻" checked> 바위
+        <input type="radio" name="rspg" value="🖐🏻" checked> 보
+        <input type="button" value="Game Start" onclick="findWinner()">
+    </form>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>✌🏻가위✌🏻 ✊🏻바위✊🏻 🖐🏻보🖐🏻 게임</title>
+</head>
+
+<body>
+    <h3>✌🏻가위✌🏻 ✊🏻바위✊🏻 🖐🏻보🖐🏻</h3>
+    <hr />
+    <script>
+        //findWinner 함수를 정의한다.
+        function findWinner() {
+            let rspg = ['✌🏻', '👊🏻', '🖐🏻'];
+
+            let comIndex = Math.floor(Math.random() * 3);
+            let com = rspg[comIndex];
+
+            let user_v = document.getElementsByName("rsp");
+
+            alert(user_v[0].value)
+
+            let result = "";
+            if (user_v == '✌🏻' && com == '🖐🏻' || user_v == '👊🏻' && com == '✌🏻' || user_v == '🖐🏻' && com == '👊🏻') {
+                result = "님이 이김ㅋㅋㅋ😯";
+            } else if (user_v == '✌🏻' && com == '👊🏻' || user_v == '👊🏻' && com == '🖐🏻' || user_v == '🖐🏻' && com == '✌🏻') {
+                result = "님이 졌음ㅋㅋㅋ😜";
+            } else {
+                result = "무승부~~~~뿌이뿌이~~!";
+            }
+
+            alert("User: " + user_v + " vs Com: " + com + "\n" + result);
+        }
+    </script>
+    <form>
+        <input type="radio" name="rsp" value="✌🏻" checked> 가위
+        <input type="radio" name="rsp" value="✊🏻"> 바위
+        <input type="radio" name="rsp" value="🖐🏻"> 보
+        <input type="button" value="Game Start" onclick="findWinner()">
+    </form>
+</body>
+
+</html>
+
+
+<!-- for - 개별로...?  -->

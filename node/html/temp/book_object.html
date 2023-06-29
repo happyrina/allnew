@@ -1,0 +1,97 @@
+<!--
+<property>
+title
+author
+page
+category
+price
+
+<method>
+reading(page)
+rental(user, day)
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>book object</title>
+
+    <script>
+        //property
+        let book = {
+            title: "Javascript 웹 프로그래밍",
+            author: "차아린",
+            totalPage: "604",
+            category: "프로그래밍",
+            price: "30000원",
+            rentalState: 1,
+            rentalUser: "",
+            rentalDay: 0,
+            deposite: "5000원",
+            late: "",
+
+            //method
+            reading: function (page) {
+                this.totalPage -= page;
+                return this.totalPage;
+            },
+
+            rental: function (user, day) {
+                this.rentalUser = user;
+                this.rentalDay = day;
+                this.rentalState = 0;
+                return this.rentalState;
+            },
+
+
+        };
+
+    </script>
+</head>
+
+<body>
+    <h3>리터럴 표기법으로 Book 객체 만들기</h3>
+    <hr>
+    <script>
+        document.write("Book" + "<br>");
+        document.write("제목 : " + book.title + "<br>");
+        document.write("저자 : " + book.author + "<br>");
+        document.write("장르 : " + book.category + "<br>");
+        document.write("가격 : " + book.price + "<br>");
+        document.write("<hr />");
+
+        document.write(
+            "현재 전체 페이지" +
+            book.totalPage +
+            "중 잔여 페이지가" +
+            book.reading(100) +
+            "페이지 남았습니다. <br><hr />"
+        );
+
+        book.rental("차아린", 10);
+        let state = { 0: "대여중", 1: "대여가능" };
+        document.write(
+            "현재 " +
+            book.title +
+            "는 " +
+            book.rentalUser +
+            "님에게 " +
+            book.rentalDay +
+            "일 동안 " +
+            state[book.rentalState] +
+            "입니다."
+        )
+
+    </script>
+
+
+
+
+</body>
+
+
+</html>

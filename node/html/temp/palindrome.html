@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let num = 0;
+        let result = 1;
+
+        function findPalindrome() {
+            let pa_v = document.getElementByName(pal);
+            for (let i = 0; i < pal_v.length; i++) {
+                if (pal_v[i].checked == true) {
+                    num = i;
+                }
+            }
+
+            let input_v = document.getElementById("input").value;
+            let output_v = document.getElementById("output");
+            if (!num)
+
+
+        }
+
+
+
+
+
+        //text box에 팰린드롬 글자나 숫자를 넣고 checked 버튼을 눌렀을때
+        //팰린드롬 글자나 숫자면 "____은 palindrome 입니다." 라고 나오고 아니면... 틀립니다
+        //문자 체크했는데 숫자 넣으면 alert로 문자로 넣어주세요~~~
+        //alert에 확인 버튼을 누르면
+        //화면에 innerhtml을 활용해서 이것은 ____(기러기 이미지)____ 기러기 라고 나오게 하기
+        // 
+    </script>
+</head>
+
+<body>
+    <h3>palindrome</h3>
+    <hr>
+    <form>
+        <input type="text" id="input" placeholder="숫자/문자 3글자">
+        <span><input type="button" value="Checked Palindrome" onclick="findPalindrome()"></span>
+        <div style="margin-top: 20px;">
+            <input type="radio" name="pal" value="숫자" checked>숫자
+            <input type="radio" name="pal" value="문자">문자
+        </div>
+        <p id="output" style="color:rgb(255, 109, 133);"><b>3자리 문자 또는 숫자를 입력하세요!!</b>
+        </p>
+
+    </form>
+</body>
+
+</html>
+
+<!--교수님 코드-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Palindrome</title>
+    <script>
+        let isNum = 0;
+        let result = 1;
+
+        function checkPalindrome() {
+            let ta_v = document.getElementsByName("ta");
+            for (let i = 0; i < ta_v.length; i++) {
+                if (ta_v[i].checked == true) {
+                    isNum = i;
+                }
+            }
+            let input_v = document.getElementById("input").value;
+            let output_v = document.getElementById("output");
+            if (!isNum) {
+                let num = Number(input_v);
+                let input1 = Math.floor(num / 100);
+                let input2 = Math.floor((num / 10) % 10);
+                let input3 = Math.floor(num % 10);
+                result = input1 == input3 ? 1 : 0;
+            } else {
+                let char = input_v.split("");
+                result = char[0] == char[2] ? 1 : 0;
+            }
+            if (result == 1)
+                output_v.innerHTML = "입력하신 숫자/문자는 Palindrome입니다.";
+            else output_v.innerHTML = "입력하신 숫자/문자는 Palindrome이 아닙니다.";
+        }
+    </script>
+</head>
+
+<body>
+    <h3>Palindrome</h3>
+    <hr />
+    <form>
+        <input type="text" id="input" placeholder="숫자/문자 3글자" />
+        <input type="button" value="Check Palindrome" onclick="checkPalindrome()" />
+        <p>
+            <input type="radio" name="ta" value="0" checked />숫자
+            <input type="radio" name="ta" value="1" />문자
+        </p>
+    </form>
+    <div sytle="margin=100">
+        <span id="output">3자리 문자 또는 숫자를 입력하세요.</span>
+    </div>
+</body>
+
+</html>

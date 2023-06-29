@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding-top: 3rem;
+    /* h1 태그와의 간격 확보 */
+}
+
+
+/* h1 태그 스타일링 */
+h1 {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    white-space: nowrap;
+    color: #00bfff;
+    animation: blinking 2s linear infinite;
+    /* 애니메이션 효과 추가 */
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    width: 70%;
+}
+
+.game-selection,
+.ticket-selection {
+    margin-bottom: 2em;
+}
+
+select,
+input,
+button {
+    padding: 0.5em;
+    margin-top: 0.5em;
+}
+
+/* 기본 스타일 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 전체 레이아웃을 화면 중앙에 정렬 */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #e9e9e9;
+}
+
+/* 메인 요소 스타일링 */
+main {
+    background-color: rgb(255, 255, 255);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 섹션 요소 스타일링 */
+section {
+    margin-bottom: 1.5rem;
+}
+
+/* 제목 스타일링 */
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #00bfff;
+
+}
+
+/* 드롭다운 및 입력 필드 스타일링 */
+select,
+input[type="number"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* 예매하기 버튼 스타일링 */
+#clickbooking button {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: white;
+    background-color: #00bfff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 버튼 호버 효과 */
+#clickbooking button:hover {
+    background-color: #0056b3;
+}
