@@ -1,11 +1,13 @@
 build:
-	docker build -t myreact .
+	docker build -t remote .
 run:
-	docker run -p 8000:80 myreact
+	docker run -it -d -p 8000:8000 --name remote remote 
 exec:
-	docker exec -it myreact /bin/bash
+	docker exec -it remote /bin/bash
+logs:
+	docker logs remote
 ps:
-	docker ps -a
+	ocker ps -a
 img:
 	docker images
 rm:
