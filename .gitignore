@@ -52,3 +52,5 @@ oracle/node/package-lock.json
 .env
 .myenv
 
+node/node_modules
+
